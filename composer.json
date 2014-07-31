@@ -1,0 +1,17 @@
+{
+    "name": "and/gls-api",
+    "description": "GLS Shipping & Tracking API",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "And",
+            "email": "and.webdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+	    "php"               : ">=5.3.3",
+	    "symfony/validator" : "~2.3.3",
+	    "kriswallsmith/buzz": "~0.10"
+    }
+}
