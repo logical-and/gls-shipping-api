@@ -8,7 +8,7 @@
             "email": "and.webdev@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "require": {
 	    "php"               : ">=5.4.0",
 	    "symfony/validator" : "~2.3.3",
