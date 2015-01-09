@@ -60,7 +60,7 @@ class API {
 
 		try
 		{
-			$data = $this->requestSoap('printlabel', $form);
+			$data = $this->requestNuSOAP('printlabel', $form);
 		}
 		catch (\SoapFault $e)
 		{
@@ -119,11 +119,17 @@ class API {
 	 * @throws \SoapFault
 	 * @return mixed
 	 */
-	protected function requestSoap($method, $data = array()) {
+	protected function requestNuSOAP($method, $data = array()) {
 		if ($data instanceof Form) $data = $data->toArray();
 
 		$client = new nusoap_client($this->getApiUrl(), 'wsdl');
-		return $client->call($method, $data);
+
+		// Workaround " <b>Notice</b>: Array to string conversion in fergusean/nusoap/lib/class.wsdl.php:1550"
+		ob_start();
+		$result = $client->call($method, $data);
+		ob_end_clean();
+
+		return $result;
 	}
 
 	protected function request($url, $data = array(), $method = 'GET', array $headers = array()) {
@@ -149,4 +155,3 @@ class API {
 		return $this->urls[$this->countryCode];
 	}
 }
- 
