@@ -67,7 +67,7 @@ class API {
 			throw new Exception\ParcelGeneration($e->getMessage());
 		}
 
-		if (!$data['successfull'])
+		if (empty($data['successfull']))
 		{
 			throw new Exception\ParcelGeneration(
 				'Response with error',
@@ -81,7 +81,7 @@ class API {
 
 		return [
 			'tracking_code' => 1 == count($data[ 'pcls' ]) ? $data[ 'pcls' ][0] : $data[ 'pcls' ],
-			'raw_pdf' => base64_decode($data['pdfdata']),
+			'raw_pdf' => !empty($data['pdfdata']) ? base64_decode($data['pdfdata']) : FALSE,
 		];
 	}
 
